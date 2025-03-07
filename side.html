@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashwant Software Solution</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <style>
+        
+        /* Global Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #ffdde1);
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            transition: background 0.5s ease-in-out;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            transition: all 0.4s ease-in-out;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar h4 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Toggle Button */
+        #sidebar-toggle {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 1000;
+            color: white;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: 0;
+            padding: 60px 20px;
+            transition: margin-left 0.4s ease-in-out;
+        }
+
+        .lecture-content {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            min-height: 200px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: rgba(0, 0, 0, 0.9) !important;
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Collapsible Lectures */
+        .collapse-content {
+            display: none;
+            padding-left: 15px;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background: #222 !important;
+            color: white;
+        }
+
+        /* Responsive Sidebar */
+        @media (min-width: 768px) {
+            .sidebar {
+                left: 0;
+            }
+
+            .content {
+                margin-left: 270px;
+            }
+
+            #sidebar-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toggle Button for Sidebar -->
+    <div id="sidebar-toggle">&#9776;</div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h4>Tutorials</h4>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li>
+                <a href="#" onclick="toggleLecture('htmlLectures')">HTML</a>
+                <ul id="htmlLectures" class="collapse-content">
+                    <li><a href="#" onclick="showLecture('Lecture 1: Introduction to HTML')">Lecture 1: Introduction to HTML
+
+    
+                    </a></li>
+                    <li><a href="#" onclick="showLecture('Lecture 2: HTML Tags & Elements')">Lecture 2: HTML Tags & Elements</a></li>
+                    <li><a href="#" onclick="showLecture('Lecture 3: Attributes & Formatting')">Lecture 3: Attributes & Formatting</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" onclick="toggleLecture('cssLectures')">CSS</a>
+                <ul id="cssLectures" class="collapse-content">
+                    <li><a href="#" onclick="showLecture('Lecture 1: Introduction to CSS')">Lecture 1: Introduction to CSS</a></li>
+                    <li><a href="#" onclick="showLecture('Lecture 2: CSS Selectors')">Lecture 2: CSS Selectors</a></li>
+                </ul>
+            </li>
+            <li><a href="#">JavaScript</a></li>
+            <li><a href="#">Bootstrap</a></li>
+        </ul>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Yashwant Ghole</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tutorials</a></li>
+                </ul>
+                <button class="btn btn-outline-light ms-auto" id="dark-mode-toggle">Dark Mode</button>
+                <button class="btn btn-outline-light ms-2" id="color-toggle">Change Color</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Area -->
+    <div class="content">
+        <h1>Welcome</h1>
+        <p>This is a simple tutorial page using HTML, CSS, JS, and Bootstrap.</p>
+        <div class="lecture-content" id="lecture-content">
+            <h2>Select a Lecture</h2>
+            <p>Click on a lecture from the sidebar to view details.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Yashwant Software Solution | All rights reserved.
+    </footer>
+
+    <script>
+        // Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('sidebar-toggle');
+
+        toggleBtn.addEventListener('click', function () {
+            if (sidebar.style.left === "-250px") {
+                sidebar.style.left = "0";
+                document.querySelector(".content").style.marginLeft = "250px";
+            } else {
+                sidebar.style.left = "-250px";
+                document.querySelector(".content").style.marginLeft = "0";
+            }
+        });
+
+        // Collapsible Sections
+        function toggleLecture(id) {
+            var content = document.getElementById(id);
+            content.style.display = (content.style.display === "block") ? "none" : "block";
+        }
+
+        // Show Selected Lecture
+        function showLecture(lectureTitle) {
+            document.getElementById('lecture-content').innerHTML = `
+                <h2>${lectureTitle}</h2>
+                <p>Content for ${lectureTitle} will be added here.</p>
+            `;
+        }
+
+        // Dark Mode Toggle
+        document.getElementById("dark-mode-toggle").addEventListener("click", function () {
+            document.body.classList.toggle("dark-mode");
+        });
+
+        // Background Color Change
+        const colors = ["#ff9a9e", "#fad0c4", "#ffdde1", "#a18cd1", "#fbc2eb", "#8ec5fc", "#96e6a1"];
+        let colorIndex = 0;
+        document.getElementById("color-toggle").addEventListener("click", function () {
+            document.body.style.background = colors[colorIndex];
+            colorIndex = (colorIndex + 1) % colors.length;
+        });
+    </script>
+</body>
+</html>
